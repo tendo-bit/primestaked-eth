@@ -1,0 +1,43 @@
+[profile.default]
+evm_version = "shanghai" # See https://www.evmdiff.com/features?name=PUSH0&kind=opcode
+src = "contracts"
+out = "out"
+libs = ["node_modules", "lib"]
+test = "test"
+cache_path = "cache_forge"
+optimizer = true
+optimizer_runs = 10_000
+solc_version = "0.8.21"
+build_info = true
+extra_output = ["storageLayout"]
+fs_permissions = [
+    { access = "read-write", path = "./data/" },
+    { access = "read", path = "./out/" },
+]
+gas_reports = [
+    "LRTDepositPool",
+    "NodeDelegator",
+    "LRTOracle",
+    "PrimeStakedETH",
+    "LRTConfig",
+    "PrimeZapper",
+]
+
+[profile.ci]
+fuzz = { runs = 10_000 }
+verbosity = 4
+
+[fmt]
+bracket_spacing = true
+int_types = "long"
+line_length = 120
+multiline_func_header = "all"
+number_underscore = "thousands"
+quote_style = "double"
+tab_width = 4
+wrap_comments = true
+
+[rpc_endpoints]
+goerli = "https://eth-goerli.nodereal.io/v1/9fb6310559cb49c28722f2ee74c405eb"
+mainnet = "https://eth-mainnet.nodereal.io/v1/9fb6310559cb49c28722f2ee74c405eb"
+localhost = "http://localhost:8545"
